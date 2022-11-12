@@ -6,8 +6,8 @@ import urllib.request
 import os
 
 #### 개발자 툴 ####
-searchItem = "kvaratskhelia"
-howMany = 30
+searchItem = "dog"
+howMany = 50
 # 실행방법: python google.py
 # 실행 중 뜨는 오류들은 무시하시면 됩니다
 ###################
