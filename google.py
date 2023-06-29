@@ -4,15 +4,21 @@ from selenium.webdriver.common.by import By
 import time
 import urllib.request
 import os
+import shutil
 
 #### 개발자 툴 ####
-searchItem = "dog"
-howMany = 50
+searchItem = "김민재"
+howMany = 5
 # 실행방법: python google.py
 # 실행 중 뜨는 오류들은 무시하시면 됩니다
 ###################
 
-os.mkdir(searchItem)
+try:
+    os.mkdir(searchItem)
+except:
+    shutil.rmtree(searchItem)
+    os.mkdir(searchItem)
+
 driver = webdriver.Chrome()
 driver.get("https://www.google.co.kr/imghp?hl=ko&tab=ri&authuser=0&ogbl")
 elem = driver.find_element(By.NAME, "q")
@@ -40,15 +46,16 @@ while True:
 
 imgs = driver.find_elements(By.CSS_SELECTOR,'.rg_i.Q4LuWd')
 count = 1
-for imgs in imgs:
+for img in imgs:
     try: 
-        if(imgs):
-            imgs.click()
+        if(img):
+            img.click()
         else:
             print("no images")
         time.sleep(2)
-        imgUrl = driver.find_element(By.CSS_SELECTOR,".n3VNCb.KAlRDb").get_attribute("src")
-        urllib.request.urlretrieve(imgUrl, searchItem+"/"+str(count)+".jpg")
+        imgUrl = img.get_attribute("src")
+        dst = f"{searchItem}/{count:03}.jpg"
+        urllib.request.urlretrieve(imgUrl, dst)
         count += 1
     except:
         pass
