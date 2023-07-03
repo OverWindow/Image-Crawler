@@ -1,4 +1,4 @@
-# Google-Image-Crawler
+# Image-Crawler
 
 ### 실행방법
 
